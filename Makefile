@@ -12,9 +12,9 @@
 
 NAME = fractol
 
-SRCS = main.c mandelbrot.c
+SRCS = main.c mandelbrot.c key.c julia.c key_loop_hoock.c buddhabrot.c
 
-HEADERS = fractol.h
+HEADERS = fractol.h keynote.h
 
 FLAGS = -Wall -Werror -Wextra
 

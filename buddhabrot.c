@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   buddhabrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfierlaf <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/22 14:36:46 by mfierlaf          #+#    #+#             */
-/*   Updated: 2019/10/22 14:36:48 by mfierlaf         ###   ########.fr       */
+/*   Created: 2019/10/23 16:11:59 by mfierlaf          #+#    #+#             */
+/*   Updated: 2019/10/23 16:12:04 by mfierlaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static t_fractol	*start(t_fractol *info)
 {
-	info->x = 0;
+	info->x = -500;
 	info->x1 = -2.1;
 	info->x2 = 0.6;
 	info->y1 = -1.2;
@@ -51,7 +51,7 @@ static void			draw(t_fractol *info)
 		info->img_int[info->x + info->y * WHIGH] = info->color * i * 10;
 }
 
-void				mandelbrot(t_fractol *info)
+void				buddhabrot(t_fractol *info)
 {
 	info = start(info);
 	while (info->x < WHIGH)

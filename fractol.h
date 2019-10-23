@@ -17,9 +17,11 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdio.h>
+# include "keynote.h"
 # include "minilibx_macos/mlx.h"
 # include <math.h>
-# define WSIZE 1000
+# define WHIGH 1200
+# define WWIDT 1000
 
 typedef struct	s_fractol
 {
@@ -46,8 +48,15 @@ typedef struct	s_fractol
 	int		bpp;
 	int		lsize;
 	int		endian;
+	int		color;
+	int		name;
+	int		color_flag;
 }				t_fractol;
 
+int 	key_loop_hoock(t_fractol *info);
 int		main();
 void	mandelbrot(t_fractol *info);
+void	julia(t_fractol *info);
+void	buddhabrot(t_fractol *info);
+int 	key_push(int key, void *param);
 #endif

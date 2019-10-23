@@ -12,24 +12,55 @@
 
 #include "fractol.h"
 
-void	init(t_fractol *info)
+static void	init(t_fractol *info)
 {
 	info->mlx = mlx_init();
-	info->win = mlx_new_window(info->mlx, WSIZE, WSIZE, "fractol");
-	info->img = mlx_new_image(info->mlx, WSIZE, WSIZE);
+	info->win = mlx_new_window(info->mlx, WHIGH, WWIDT, "fractol");
+	info->img = mlx_new_image(info->mlx, WHIGH, WWIDT);
 	info->img_int = (int *)mlx_get_data_addr(info->img, &info->bpp,
 		&info->lsize, &info->endian);
+	info->color = 1;
+	info->color_flag = 0;
 }
 
-int	main()
+int	main(int argc, char **argv)
 {
+	int		(*key)(int, void*);
 	t_fractol *info;
 
+	if (argc != 2)
+	{
+		ft_printf("Usage : ./fractol [fractal]");
+		return (-1);
+	}
+	key = &key_push;
 	if (!(info = (t_fractol *)malloc(sizeof(t_fractol))))
 		return (-1);
 	init(info);
-	mandelbrot(info);
+	if (ft_strcmp(argv[1], "mandelbrot") == 0)
+	{
+		info->name = 1;
+		mandelbrot(info);
+	}
+	else if (ft_strcmp(argv[1], "julia") == 0)
+	{
+		info->name = 2;
+		julia(info);
+	}
+	else if (ft_strcmp(argv[1], "buddhabrot") == 0)
+	{
+		info->name = 3;
+		buddhabrot(info);
+	}
+	else
+	{
+		ft_printf("i dont use this fractal");
+		return (-1);
+	}
 	mlx_put_image_to_window(info->mlx, info->win, info->img, 0, 0);
+	mlx_key_hook(info->win, key, info);
+	mlx_loop_hook(info->mlx, key_loop_hoock, info);
+	mlx_hook(info->win, MOTIONNOTIFY, POINTERMOTIONMASK, move, info);
 	mlx_loop(info->mlx);
 	return (0);
 }
