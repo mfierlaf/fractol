@@ -51,12 +51,17 @@ typedef struct	s_fractol
 	int		color;
 	int		name;
 	int		color_flag;
+	double	modx;
+	double	mody;
+	int		nzoom;
 }				t_fractol;
 
 int 	key_loop_hoock(t_fractol *info);
+int 	move(int x, int y, t_fractol *info);
 int		main();
 void	mandelbrot(t_fractol *info);
 void	julia(t_fractol *info);
-void	buddhabrot(t_fractol *info);
+void	burning_ship(t_fractol *info);
 int 	key_push(int key, void *param);
+int		mouse_hook(int mouse2, int x, int y, t_fractol *info);
 #endif

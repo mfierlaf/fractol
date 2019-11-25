@@ -21,6 +21,7 @@ static void	init(t_fractol *info)
 		&info->lsize, &info->endian);
 	info->color = 1;
 	info->color_flag = 0;
+	info->nzoom = 0;
 }
 
 int	main(int argc, char **argv)
@@ -47,10 +48,10 @@ int	main(int argc, char **argv)
 		info->name = 2;
 		julia(info);
 	}
-	else if (ft_strcmp(argv[1], "buddhabrot") == 0)
+	else if (ft_strcmp(argv[1], "burning_ship") == 0)
 	{
 		info->name = 3;
-		buddhabrot(info);
+		burning_ship(info);
 	}
 	else
 	{
@@ -58,9 +59,9 @@ int	main(int argc, char **argv)
 		return (-1);
 	}
 	mlx_put_image_to_window(info->mlx, info->win, info->img, 0, 0);
+	mlx_mouse_hook(info->win, mouse_hook, info);
 	mlx_key_hook(info->win, key, info);
 	mlx_loop_hook(info->mlx, key_loop_hoock, info);
-	mlx_hook(info->win, MOTIONNOTIFY, POINTERMOTIONMASK, move, info);
 	mlx_loop(info->mlx);
 	return (0);
 }

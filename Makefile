@@ -12,7 +12,8 @@
 
 NAME = fractol
 
-SRCS = main.c mandelbrot.c key.c julia.c key_loop_hoock.c buddhabrot.c
+SRCS = main.c mandelbrot.c key.c julia.c key_loop_hoock.c burning_ship.c \
+move.c mouse_hook.c
 
 HEADERS = fractol.h keynote.h
 

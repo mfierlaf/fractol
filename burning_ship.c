@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   buddhabrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mfierlaf <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/22 14:36:46 by mfierlaf          #+#    #+#             */
-/*   Updated: 2019/10/22 14:36:48 by mfierlaf         ###   ########.fr       */
+/*   Created: 2019/10/23 16:11:59 by mfierlaf          #+#    #+#             */
+/*   Updated: 2019/10/23 16:12:04 by mfierlaf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,14 @@ static t_fractol	*start(t_fractol *info)
 	info->image_y = WWIDT;
 	if (info->nzoom == 0)
 	{
+		info->it_max = 50;
 		info->y1 = -1.2;
 		info->x1 = -2.1;
-		info->it_max = 50;
 		info->zoom_x = info->image_x / (info->x2 - info->x1);
 		info->zoom_y = info->image_y / (info->y2 - info->y1);
 	}
 	return (info);
 }
-
 
 static void			draw(t_fractol *info)
 {
@@ -46,7 +45,7 @@ static void			draw(t_fractol *info)
 			info->tmp = info->z_r;
 			info->z_r = info->z_r * info->z_r - info->z_i * info->z_i +
 			info->c_r;
-			info->z_i = 2 * info->z_i * info->tmp + info->c_i;
+			info->z_i = fabs(2 * info->z_i * info->tmp) + info->c_i;
 			i = i + 1;
 		}
 	if (i == info->it_max)
@@ -55,7 +54,7 @@ static void			draw(t_fractol *info)
 		info->img_int[info->x + info->y * WHIGH] = info->color * i * 10;
 }
 
-void				mandelbrot(t_fractol *info)
+void				burning_ship(t_fractol *info)
 {
 	info = start(info);
 	while (info->x < WHIGH)

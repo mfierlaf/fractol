@@ -25,7 +25,9 @@ int key_loop_hoock(t_fractol *info)
 	else if (info->name == 2)
 		julia(info);
 	else if (info->name == 3)
-		buddhabrot(info);
+		burning_ship(info);
 	mlx_put_image_to_window(info->mlx, info->win, info->img, 0, 0);
+	if (info->name == 2)
+		mlx_hook(info->win, MOTIONNOTIFY, POINTERMOTIONMASK, move, info);
 	return (1);
 }

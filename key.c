@@ -30,5 +30,9 @@ int			key_push(int key2, void *param)
 		info->name = 2;
 	if (key2 == M_KEY)
 		info->name = 1;
+	if (key2 == B_KEY)
+		info->name = 3;
+	if (info->name == 2)
+		mlx_hook(info->win, MOTIONNOTIFY, POINTERMOTIONMASK, move, info);
 	return (0);
 }
