@@ -12,10 +12,9 @@
 
 NAME = fractol
 
-SRCS = main.c mandelbrot.c key.c julia.c key_loop_hoock.c burning_ship.c \
-move.c mouse_hook.c
+SRCS = srcs/
 
-HEADERS = fractol.h keynote.h
+HEADERS = includes/fractol.h include/keynote.h
 
 FLAGS = -Wall -Werror -Wextra
 
@@ -24,7 +23,7 @@ all: $(NAME)
 $(NAME):
 	@make re -C ./libft
 	@make clean
-	@gcc $(FLAGS) -o $(NAME) $(SRCS) -L libft/ -lft -L ./minilibx_macos \
+	@gcc $(FLAGS) -o $(NAME) $(SRCS)*.c -L libft/ -lft -L ./minilibx_macos \
 	-lmlx -framework OpenGL -framework AppKit
 
 clean:
